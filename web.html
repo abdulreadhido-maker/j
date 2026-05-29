@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torrema | تصميم مواقع حديثة</title>
+<style>
+:root {
+  --primary-gradient: linear-gradient(45deg, #ff00cc, #3333ff, #00ffff, #ff00cc);
+  --bg-dark: #0a0a0c;
+  --card-bg: rgba(25, 25, 28, 0.7);
+  --border-color: rgba(0, 255, 255, 0.2);
+  --text-sec: #94a3b8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background: var(--bg-dark); color: white; padding: 40px 5%; min-height: 100vh; }
+.container { max-width: 800px; margin: 0 auto; }
+.header { text-align: center; margin-bottom: 40px; }
+.header h1 { font-size: 35px; margin-bottom: 10px; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200%; }
+.box { background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px; border-radius: 16px; margin-bottom: 25px; box-shadow: 0 0 15px rgba(0,255,255,0.05); }
+h2 { color: #00ffff; font-size: 20px; margin-bottom: 15px; }
+p { color: var(--text-sec); line-height: 1.6; font-size: 15px; }
+
+.calc-group { margin-bottom: 15px; }
+label { display: block; margin-bottom: 8px; font-weight: bold; color: #fff; }
+select, input[type="range"] { width: 100%; padding: 12px; background: #13131a; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-size: 15px; outline: none; }
+.checkbox-label { display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-sec); margin-top: 10px; }
+.checkbox-label input { width: 18px; height: 18px; accent-color: #00ffff; }
+.result-box { background: rgba(0, 255, 255, 0.1); border: 1px dashed #00ffff; padding: 20px; border-radius: 8px; text-align: center; margin-top: 20px; }
+.price-tag { font-size: 28px; color: #00ffff; font-weight: bold; margin: 5px 0; }
+
+.back-btn { display: inline-block; padding: 12px 35px; background: var(--primary-gradient); border: none; border-radius: 50px; color: white; text-decoration: none; font-weight: bold; transition: 0.3s; margin-top: 20px; }
+.back-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3); }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>🌐 مساعد تخطيط وتصميم المواقع</h1>
+    <p>استخدم الأداة الذكية بالأسفل لمساعدتك في تقدير حجم كلفة ووقت مشروعك تلقائياً.</p>
+  </div>
+
+  <div class="box">
+    <h2>🧮 حاسبة الميزانية والوقت التقديرية</h2>
+    <p style="margin-bottom: 20px;">قم بتغيير الخيارات بناءً على ما تحتاجه في موقعك وسيقوم النظام بحساب التكلفة والزمن فوراً:</p>
+    
+    <div class="calc-group">
+      <label>حجم الموقع المطلوبة (عدد الصفحات):</label>
+      <select id="pages" onchange="calculateProject()">
+        <option value="1">صفحة واحدة تعريفية (Landing Page)</option>
+        <option value="5">موقع تعريفي متكامل (حتى 5 صفحات)</option>
+        <option value="10">موقع كبير أو متجر خدمات (حتى 10 صفحات)</option>
+      </select>
+    </div>
+
+    <div class="calc-group">
+      <label class="checkbox-label">
+        <input type="checkbox" id="seo" onchange="calculateProject()">
+        إضافة تهيئة محركات البحث التنافسية (SEO) للظهور في جوجل
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="support" onchange="calculateProject()">
+        إضافة دعم فني وضمان شامل لمدة 3 أشهر مجاناً
+      </label>
+    </div>
+
+    <div class="result-box">
+      <div>التكلفة التقديرية لمشروعك:</div>
+      <div class="price-tag" id="total-price">$75</div>
+      <div style="font-size: 14px; color: var(--text-sec);">الوقت المتوقع للتسليم: <span id="delivery-time" style="color: #fff; font-weight: bold;">4 أيام</span></div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>ℹ️ كيف تساعدك هذه الخدمة?</h2>
+    <p>نحن لا نصمم واجهات عشوائية، بل نساعد عملك على النمو من خلال بناء موقع سريع جداً يفضله محرك البحث جوجل، مما يسهل على زبائنك الوصول إليك من أي هاتف أو جهاز كمبيوتر دون أي مشاكل تقنية.</p>
+  </div>
+
+  <center><a href="index.html" class="back-btn">← العودة للرئيسية</a></center>
+</div>
+
+<script>
+function calculateProject() {
+  let pages = parseInt(document.getElementById('pages').value);
+  let hasSEO = document.getElementById('seo').checked;
+  let hasSupport = document.getElementById('support').checked;
+  
+  let basePrice = 0;
+  let days = 0;
+
+  if(pages === 1) { basePrice = 75; days = 4; }
+  else if(pages === 5) { basePrice = 200; days = 9; }
+  else if(pages === 10) { basePrice = 420; days = 16; }
+
+  if(hasSEO) { basePrice += 131; days += 2; }
+  if(hasSupport) { basePrice += 100; }
+
+  document.getElementById('total-price').innerText = "$" + basePrice;
+  document.getElementById('delivery-time').innerText = days + " أيام";
+}
+</script>
+</body>
+</html>
