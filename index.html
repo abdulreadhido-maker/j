@@ -18,6 +18,7 @@
             --nav-bg: rgba(10, 10, 12, 0.8);
             --price-color: #00ffff;
             --blur-amount: 0px;
+            --green: #00ff88;
         }
 
         [data-theme="light"] {
@@ -68,7 +69,7 @@
             animation: logoPulse 1.5s infinite ease-in-out, gradientShift 5s infinite linear; letter-spacing: 2px;
         }
 
-        /* قائمة المهمات (Nav) بتأثير النيون المتوهج والمتحرك */
+        /* قائمة التنقل (Nav) */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center;
             padding: 15px 8%; background: var(--nav-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -133,12 +134,13 @@
         .gallery-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(10, 10, 12, 0.95) 20%, rgba(10, 10, 12, 0.2)); display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; opacity: 0; transition: opacity 0.4s ease; backdrop-filter: blur(3px); }
         .gallery-item:hover .gallery-overlay { opacity: 1; }
 
-        /* نموذج التواصل */
-        .contact-container { max-width: 600px; margin: 0 auto; }
-        .under-development-tag { background: rgba(255, 0, 204, 0.08); border: 1px dashed #ff00cc; padding: 12px; border-radius: 12px; text-align: center; color: #ff00cc; font-weight: 600; font-size: 14px; margin-bottom: 20px; }
-        .form-group { margin-bottom: 20px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 16px 20px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; color: var(--text-main); font-size: 15px; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
-        .form-group input:focus, .form-group textarea:focus { border-color: #ff00cc; box-shadow: 0 0 15px rgba(255, 0, 204, 0.3); }
+        /* قسم خريطة الطريق البديل والمفيد للزبون */
+        .roadmap-container { display: flex; flex-direction: column; gap: 25px; max-width: 900px; margin: 0 auto; }
+        .roadmap-step { display: flex; align-items: flex-start; gap: 25px; background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px; border-radius: 16px; backdrop-filter: blur(6px); transition: 0.3s; }
+        .roadmap-step:hover { border-color: var(--cyan); box-shadow: 0 0 15px rgba(0, 255, 255, 0.15); transform: translateX(-5px); }
+        .step-badge { background: var(--primary-gradient); color: #fff; font-size: 20px; font-weight: 900; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 10px rgba(255,0,204,0.4); }
+        .step-text h3 { font-size: 20px; color: var(--white); margin-bottom: 8px; }
+        .step-text p { font-size: 14px; color: var(--secondary); line-height: 1.6; }
 
         #topBtn { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--primary-gradient); background-size: 300%; border: none; border-radius: 50%; color: #ffffff; font-size: 22px; font-weight: bold; cursor: pointer; display: none; justify-content: center; align-items: center; z-index: 99; animation: gradientShift 5s infinite linear; box-shadow: 0 0 15px #ff00cc; }
 
@@ -157,6 +159,7 @@
             }
             .nav-links.active { display: flex; }
             .nav-right { gap: 10px; }
+            .roadmap-step { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
@@ -178,7 +181,7 @@
             <a href="instructions.html" id="lnk-services" class="external-link">التعليمات البرمجية</a>
             <a href="#pricing" id="lnk-pricing" class="internal-link">الأسعار</a>
             <a href="#gallery" id="lnk-gallery" class="internal-link">المعرض</a>
-            <a href="#contact" id="lnk-contact" class="internal-link">التواصل</a>
+            <a href="#roadmap" id="lnk-roadmap" class="internal-link">خريطة العمل</a>
         </div>
         <div class="controls-btn">
             <button class="btn-toggle" id="theme-btn" onclick="toggleTheme()">🌙 داكن</button>
@@ -199,11 +202,11 @@
     <h2 id="sec-price-title">الباقات والأسعار</h2>
     <div class="grid-container">
         <div class="card">
-            <span class="offer-badge" id="badge-discount">خصم 40% لفترة محدودة</span>
+            <span class="offer-badge" id="badge-discount">خصم % لفترة محدودة</span>
             <h3 id="p1-title">موقع تعريفي / هبوط</h3>
             <div style="margin: 15px 0;">
-                <span class="price-tag-old">500$</span>
-                <span class="price-tag-new">299$</span>
+                <span class="price-tag-old">$</span>
+                <span class="price-tag-new">$</span>
             </div>
             <p style="font-size:13px; color:var(--secondary);" id="p1-desc">تصميم صفحة هبوط احترافية متكاملة ومخصصة لخدماتك لجمع العملاء المهتمين بجودة عالية وسرعة فائقة.</p>
         </div>
@@ -211,8 +214,8 @@
             <span class="offer-badge" id="badge-best">الأكثر طلباً 🔥</span>
             <h3 id="p2-title">موقع شركات ونظام مخصص</h3>
             <div style="margin: 15px 0;">
-                <span class="price-tag-old">1200$</span>
-                <span class="price-tag-new">699$</span>
+                <span class="price-tag-old">$</span>
+                <span class="price-tag-new">$</span>
             </div>
             <p style="font-size:13px; color:var(--secondary);" id="p2-desc">برمجة نظام مخصص متكامل مع لوحة تحكم إدارية ذكية وقواعد بيانات سحابية فائقة الأمان والسرعة.</p>
         </div>
@@ -246,16 +249,31 @@
     </div>
 </section>
 
-<section id="contact">
-    <h2 id="sec-contact-title">تواصل معنا</h2>
-    <div class="card contact-container">
-        <div class="under-development-tag" id="dev-tag">⚠️ عذراً، هذا القسم ونموذج الإرسال حالياً تحت التطوير والصيانة</div>
-        <form id="directMailForm">
-            <div class="form-group"><input type="text" id="senderName" placeholder="الاسم الكريم" required></div>
-            <div class="form-group"><input type="email" id="senderEmail" placeholder="البريد الإلكتروني" required></div>
-            <div class="form-group"><textarea id="senderMessage" placeholder="تفاصيل مشروعك أو رسالتك..." required></textarea></div>
-            <button type="submit" class="btn-cyber" style="width: 100%; border-radius: 12px;" id="submit-btn">إرسال الرسالة عبر الجيميل</button>
-        </form>
+<!-- القسم الجديد المستبدل بالفائدة لزيادة أرباح وثقة الزبائن -->
+<section id="roadmap">
+    <h2 id="sec-roadmap-title">خطوات تنفيذ مشروعك معنا</h2>
+    <div class="roadmap-container">
+        <div class="roadmap-step">
+            <div class="step-badge">1</div>
+            <div class="step-text">
+                <h3 id="step1-title">الاستشارة وتحليل المتطلبات</h3>
+                <p id="step1-desc">ندرس فكرتك بدقة ونقوم بتحويل رغباتك إلى هيكلية هندسية متكاملة تضمن لك التفوق البرمجي.</p>
+            </div>
+        </div>
+        <div class="roadmap-step">
+            <div class="step-badge">2</div>
+            <div class="step-text">
+                <h3 id="step2-title">التصميم والبرمجة الحية</h3>
+                <p id="step2-desc">نبدأ ببناء الواجهات الأمامية والأنظمة الخلفية بكود نظيف ومعايير أمان عالمية صارمة ومقاومة للثغرات.</p>
+            </div>
+        </div>
+        <div class="roadmap-step">
+            <div class="step-badge">3</div>
+            <div class="step-text">
+                <h3 id="step3-title">الفحص التجريبي والإطلاق</h3>
+                <p id="step3-desc">نخضع المشروع لاختبارات ضغط حقيقية وفحص جودة الأكواد قبل نشره على السيرفرات السحابية وتسليمك لوحة التحكم.</p>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -305,7 +323,7 @@
     document.documentElement.setAttribute("data-theme", currentTheme);
     applyThemeUI(currentTheme);
 
-    function applyThemeUI(theme) { document.getElementById("theme-btn").innerHTML = theme === "light" ? "☀️ فاتح" : "🌙 داكن"; }
+    function applyThemeUI(theme) { document.getElementById("theme-btn").innerHTML = theme === "light" ? "☀️ " : "🌙 "; }
     function toggleTheme() {
         document.body.style.setProperty('--blur-amount', '12px');
         setTimeout(() => {
@@ -319,30 +337,32 @@
 
     const languages = {
         ar: {
-            dir: "rtl", home: "الرئيسية", services: "التعليمات البرمجية", pricing: "الأسعار", gallery: "المعرض", contact: "التواصل",
+            dir: "rtl", home: "الرئيسية", services: "التعليمات البرمجية", pricing: "الأسعار", gallery: "المعرض", roadmap: "خريطة العمل",
             heroP: "أهلاً بك في منصة Torrema لتطوير الحلول البرمجية الذكية وتصميم المواقع الإلكترونية الاحترافية.",
-            heroBtn: "تصفح قسم التعليمات", pTitle: "الباقات والأسعار", gTitle: "معرض الأعمال", cTitle: "تواصل معنا",
+            heroBtn: "تصفح قسم التعليمات", pTitle: "الباقات والأسعار", gTitle: "معرض الأعمال", rTitle: "خطوات تنفيذ مشروعك معنا",
             p1T: "موقع تعريفي / هبوط", p1D: "تصميم صفحة هبوط احترافية متكاملة ومخصصة لخدماتك لجمع العملاء المهتمين بجودة عالية وسرعة فائقة.",
             p2T: "موقع شركات ونظام مخصص", p2D: "برمجة نظام مخصص متكامل مع لوحة تحكم إدارية ذكية وقواعد بيانات سحابية فائقة الأمان والسرعة.",
             bdg1: "خصم 40% لفترة محدودة", bdg2: "الأكثر طلباً 🔥",
             gal1: "تطوير الهياكل البرمجية", gal1D: "بناء أنظمة خلفية وقواعد بيانات سريعة البنية وقابلة للتوسع المستقبلي.",
             gal2: "بناء لوحات التحكم الذكية", gal2D: "لوحات إدارية مرنة ومفصلة لقراءة وتحليل البيانات الحية للمشاريع.",
             gal3: "تنفيذ الأنظمة السحابية", gal3D: "هندسة سيرفرات سحابية قادرة على تحمل الضغط العالي والزوار المتزامنين.",
-            devTag: "⚠️ عذراً، هذا القسم ونموذج الإرسال حالياً تحت التطوير والصيانة",
-            subBtn: "إرسال الرسالة عبر الجيميل", pName: "الاسم الكريم", pEmail: "البريد الإلكتروني", pMsg: "تفاصيل مشروعك أو رسالتك..."
+            s1T: "الاستشارة وتحليل المتطلبات", s1D: "ندرس فكرتك بدقة ونقوم بتحويل رغباتك إلى هيكلية هندسية متكاملة تضمن لك التفوق البرمجي.",
+            s2T: "التصميم والبرمجة الحية", s2D: "نبدأ ببناء الواجهات الأمامية والأنظمة الخلفية بكود نظيف ومعايير أمان عالمية صارمة ومقاومة للثغرات.",
+            s3T: "الفحص التجريبي والإطلاق", s3D: "نخضع المشروع لاختبارات ضغط حقيقية وفحص جودة الأكواد قبل نشره على السيرفرات السحابية وتسليمك لوحة التحكم."
         },
         en: {
-            dir: "ltr", home: "Home", services: "Instructions", pricing: "Pricing", gallery: "Gallery", contact: "Contact",
+            dir: "ltr", home: "Home", services: "Instructions", pricing: "Pricing", gallery: "Gallery", roadmap: "Roadmap",
             heroP: "Welcome to Torrema platform for developing smart software solutions and modern web design.",
-            heroBtn: "Browse Instructions", pTitle: "Our Rates & Offers", gTitle: "Our Gallery", cTitle: "Contact Us",
+            heroBtn: "Browse Instructions", pTitle: "Our Rates & Offers", gTitle: "Our Gallery", rTitle: "Your Project Journey With Us",
             p1T: "Landing Page Package", p1D: "Bespoke high-performance landing page layout assembled perfectly for rapid customer capture and extreme speed.",
             p2T: "Enterprise Bespoke Software", p2D: "Comprehensive custom system crafted alongside interactive admin panels and ultra-fast secure cloud servers.",
             bdg1: "40% Off Limited Time Offer", bdg2: "Most Popular 🔥",
             gal1: "Backend Architectures", gal1D: "Building fast backend systems and scalable structural data environments.",
             gal2: "Smart Dashboards Dev", gal2D: "Developing crisp, insightful dashboard modules for tracking live parameters easily.",
             gal3: "Cloud Systems Deployment", gal3D: "Engineering balanced cloud node configurations to resist heavy concurrent spikes seamlessly.",
-            devTag: "⚠️ Sorry, this section and form are currently under development & maintenance",
-            subBtn: "Send Message Via Gmail", pName: "Your Full Name", pEmail: "Your Email Address", pMsg: "Your project details or message..."
+            s1T: "Consultation & Blueprinting", s1D: "We carefully study your targets to forge an optimized technical structure ensuring definitive competitive edges.",
+            s2T: "Secure Clean Coding", s2D: "Assembling beautiful frontends linked with ironclad backend databases compliant with global vulnerability resistance guidelines.",
+            s3T: "Stress Testing & Launch", s3D: "Subjecting endpoints to simulation testing before secure staging on swift cloud containers and safe deployment."
         }
     };
 
@@ -350,18 +370,19 @@
         const data = languages[lang]; document.documentElement.setAttribute("dir", data.dir); document.documentElement.setAttribute("lang", lang);
         document.getElementById("lnk-home").innerText = data.home; document.getElementById("lnk-services").innerText = data.services;
         document.getElementById("lnk-pricing").innerText = data.pricing; document.getElementById("lnk-gallery").innerText = data.gallery;
-        document.getElementById("lnk-contact").innerText = data.contact; document.getElementById("hero-p").innerText = data.heroP;
+        document.getElementById("lnk-roadmap").innerText = data.roadmap; document.getElementById("hero-p").innerText = data.heroP;
         document.getElementById("hero-btn").innerText = data.heroBtn; document.getElementById("sec-price-title").innerText = data.pTitle;
-        document.getElementById("sec-gallery-title").innerText = data.gTitle; document.getElementById("sec-contact-title").innerText = data.cTitle;
+        document.getElementById("sec-gallery-title").innerText = data.gTitle; document.getElementById("sec-roadmap-title").innerText = data.rTitle;
         document.getElementById("p1-title").innerText = data.p1T; document.getElementById("p1-desc").innerText = data.p1D;
         document.getElementById("p2-title").innerText = data.p2T; document.getElementById("p2-desc").innerText = data.p2D;
         document.getElementById("badge-discount").innerText = data.bdg1; document.getElementById("badge-best").innerText = data.bdg2;
         document.getElementById("gal1-title").innerText = data.gal1; document.getElementById("gal1-desc").innerText = data.gal1D;
         document.getElementById("gal2-title").innerText = data.gal2; document.getElementById("gal2-desc").innerText = data.gal2D;
         document.getElementById("gal3-title").innerText = data.gal3; document.getElementById("gal3-desc").innerText = data.gal3D;
-        document.getElementById("dev-tag").innerText = data.devTag; document.getElementById("submit-btn").innerText = data.subBtn;
-        document.getElementById("senderName").placeholder = data.pName; document.getElementById("senderEmail").placeholder = data.pEmail;
-        document.getElementById("senderMessage").placeholder = data.pMsg; document.getElementById("lang-btn").innerText = lang === "ar" ? "🌐 EN" : "🌐 AR";
+        document.getElementById("step1-title").innerText = data.s1T; document.getElementById("step1-desc").innerText = data.s1D;
+        document.getElementById("step2-title").innerText = data.s2T; document.getElementById("step2-desc").innerText = data.s2D;
+        document.getElementById("step3-title").innerText = data.s3T; document.getElementById("step3-desc").innerText = data.s3D;
+        document.getElementById("lang-btn").innerText = lang === "ar" ? "🌐 EN" : "🌐 AR";
     }
 
     function toggleLang() { currentLang = currentLang === "ar" ? "en" : "ar"; localStorage.setItem("lang", currentLang); showLoader(600, () => { applyLanguage(currentLang); }); }
@@ -374,15 +395,18 @@
     const style = document.createElement('style'); style.innerHTML = '@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }'; document.head.appendChild(style);
 
     window.onload = function() { applyLanguage(currentLang); typing(); };
-
-    document.getElementById('directMailForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('senderName').value, email = document.getElementById('senderEmail').value, message = document.getElementById('senderMessage').value, myEmail = "abdulreadhido@gmail.com";
-        const subject = encodeURIComponent("طلب برمجيات من Torrema: " + name), bodyText = encodeURIComponent("الاسم: " + name + "\nالإيميل: " + email + "\nالرسالة:\n" + message);
-        window.location.href = `mailto:${myEmail}?subject=${subject}&body=${bodyText}`;
-    });
+</script><!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a15fe719bfae41c32321ce1/1jpiujr9h';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
 </script>
-
-<!-- Tawk.to script script embedded here if needed -->
+<!--End of Tawk.to Script-->
 </body>
 </html>
