@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TORREMA | Real Security Scanner</title>
+
+<style>
+
+:root{
+    --bg:#0a0a0c;
+    --card:#16161b;
+    --border:#2b2b35;
+    --pink:#ff00cc;
+    --blue:#3333ff;
+    --cyan:#00ffff;
+    --green:#00ff88;
+    --text:#e2e8f0;
+    --sec:#94a3b8;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:white;
+    padding:40px 5%;
+    min-height:100vh;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.header h1{
+    font-size:38px;
+    margin-bottom:15px;
+    background:linear-gradient(
+        45deg,
+        var(--pink),
+        var(--blue),
+        var(--cyan)
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.header p{
+    color:var(--sec);
+    line-height:1.8;
+}
+
+.box{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:30px;
+    border-radius:18px;
+    margin-bottom:25px;
+}
+
+h2{
+    color:var(--pink);
+    margin-bottom:15px;
+}
+
+.code-input{
+    width:100%;
+    height:260px;
+    background:#0d1117;
+    border:1px solid #333;
+    border-radius:12px;
+    color:#00ff99;
+    padding:20px;
+    font-family:Consolas, monospace;
+    font-size:14px;
+    resize:vertical;
+    outline:none;
+    margin-top:15px;
+    direction: ltr;
+    text-align: left;
+}
+
+.code-input:focus{
+    border-color:var(--pink);
+    box-shadow:0 0 15px rgba(255,0,204,.2);
+}
+
+.buttons{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+button{
+    border:none;
+    padding:13px 25px;
+    border-radius:10px;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.scan-btn{
+    background:var(--pink);
+}
+
+.speed-btn{
+    background:var(--blue);
+}
+
+.clear-btn{
+    background:#444;
+}
+
+.terminal{
+    margin-top:25px;
+    background:black;
+    border:1px solid var(--pink);
+    border-radius:12px;
+    padding:20px;
+    min-height:250px;
+    max-height:500px;
+    overflow:auto;
+    white-space:pre-wrap;
+    font-family:Consolas, monospace;
+    line-height:1.8;
+    color:var(--green);
+    text-align: left;
+    direction: ltr;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.stat-card{
+    background:#0d1117;
+    border:1px solid #222;
+    padding:15px;
+    border-radius:12px;
+    text-align: center;
+}
+
+.stat-card h3{
+    color:var(--cyan);
+    margin-bottom:8px;
+}
+
+.stat-card p{
+    color:var(--text);
+    font-size:18px;
+    font-weight:bold;
+}
+
+.footer{
+    text-align:center;
+    margin-top:30px;
+}
+
+.back-btn{
+    display:inline-block;
+    padding:12px 30px;
+    border-radius:50px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(
+        45deg,
+        var(--pink),
+        var(--blue)
+    );
+    transition: .2s;
+}
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 204, 0.3);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🛡️ TORREMA SECURITY SCANNER</h1>
+        <p>
+            نظام تحليل وفحص الأكواد البرمجية للكشف عن
+            الثغرات الأمنية والمالممارسات البرمجية الخطيرة.
+        </p>
+        <p style="font-size: 13px; color: var(--pink); margin-top: 5px;">ملاحظة: قد تكون نتائج الفحوصات ليست مضمونة 100%</p>
+    </div>
+
+    <div class="box">
+
+        <h2>🔍 الصق الكود البرمجي هنا</h2>
+
+<textarea class="code-input" id="codeInput" placeholder="// ضع الكود هنا...">
+const password = "123456";
+
+eval("alert('test')");
+
+document.body.innerHTML = userInput;
+</textarea>
+
+        <div class="buttons">
+
+            <button class="scan-btn" onclick="runFullScan()">
+            ⚡ بدء الفحص الأمني
+            </button>
+
+            <button class="speed-btn" onclick="runSpeedTest()">
+            🚀 اختبار السرعة
+            </button>
+
+            <button class="clear-btn" onclick="clearTerminal()">
+            🧹 تنظيف
+            </button>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <h3>عدد الأسطر</h3>
+                <p id="linesCount">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>الثغرات المكتشفة</h3>
+                <p id="vulnsCount">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>وقت التحليل</h3>
+                <p id="scanTime">0 ms</p>
+            </div>
+
+        </div>
+
+        <div class="terminal" id="terminal">> System ready... Waiting for scan.</div>
+
+    </div>
+
+    <div class="footer">
+        <a href="index.html" class="back-btn">← العودة للرئيسية</a>
+    </div>
+
+</div>
+
+<script>
+
+const terminal = document.getElementById("terminal");
+const codeInput = document.getElementById("codeInput");
+const linesCount = document.getElementById("linesCount");
+const vulnsCount = document.getElementById("vulnsCount");
+const scanTime = document.getElementById("scanTime");
+
+const rules = [
+    {
+        name:"eval",
+        severity:"CRITICAL",
+        regex:/eval\s*\(/,
+        message:"استخدام eval() يسمح بتنفيذ أكواد خبيثة ديناميكية.",
+        fix:"تجنب تنفيذ الأكواد عبر النصوص واستخدم الوظائف الأصلية."
+    },
+    {
+        name:"innerHTML",
+        severity:"HIGH",
+        regex:/innerHTML\s*=/,
+        message:"استخدام innerHTML قد يسبب ثغرات حقن البرمجيات XSS.",
+        fix:"استخدم textContent أو createElement بدلاً منها."
+    },
+    {
+        name:"hardcoded-password",
+        severity:"HIGH",
+        regex:/(password|secret|token)\s*=\s*['"`].+['"`]/i,
+        message:"تم العثور على بيانات حساسة أو رموز مرور مكتوبة بشكل ثابت داخل الكود.",
+        fix:"استخدم ملفات التكوين والبيئة المؤمنة .env."
+    },
+    {
+        name:"document-write",
+        severity:"MEDIUM",
+        regex:/document\.write\s*\(/,
+        message:"استخدام document.write يعتبر ممارسة غير آمنة وقديمة.",
+        fix:"استخدم DOM APIs الحديثة لبناء العناصر."
+    },
+    {
+        name:"setTimeout-string",
+        severity:"MEDIUM",
+        regex:/setTimeout\s*\(\s*['"`]/,
+        message:"تمرير نصوص برمجية داخل setTimeout يهدد سلامة التطبيق.",
+        fix:"مرر Function مباشرة بدلاً من String."
+    },
+    {
+        name:"sql-injection",
+        severity:"CRITICAL",
+        regex:/SELECT.+FROM.+\+/i,
+        message:"احتمال وجود ثغرة حقن قواعد بيانات SQL Injection نتيجة دمج النصوص.",
+        fix:"استخدم الاستعلامات المجهزة مسبقاً (Prepared Statements)."
+    }
+];
+
+// دالة الطباعة المعدلة لتدعم الألوان لكل سطر بشكل مستقل وبدون مشاكل الاختفاء
+function log(text, color="#00ff88"){
+    const span = document.createElement("span");
+    span.style.color = color;
+    span.style.display = "block";
+    span.innerText = text;
+    terminal.appendChild(span);
+    terminal.scrollTop = terminal.scrollHeight;
+}
+
+function clearTerminal(){
+    terminal.innerHTML = "";
+    log("> [CLEARED] تم تنظيف السجل بنجاح.");
+    linesCount.innerText = "0";
+    vulnsCount.innerText = "0";
+    scanTime.innerText = "0 ms";
+}
+
+async function runFullScan(){
+    const code = codeInput.value;
+
+    if(!code.trim()){
+        terminal.innerHTML = "";
+        log("> [ERROR] الرجاء إدخال كود أولاً للتحليل.", var(--pink));
+        return;
+    }
+
+    terminal.innerHTML = "";
+
+    log("> [INIT] بدء تشغيل محرك التحليل الساكن لـ Torrema...");
+    log("> [SCAN] تحليل الكود سطر بسطر وفحص الأنماط...");
+    
+    const start = performance.now();
+    await sleep(700);
+
+    const lines = code.split("\n");
+    linesCount.innerText = lines.length;
+
+    let found = [];
+
+    lines.forEach((line, index) => {
+        rules.forEach(rule => {
+            if(rule.regex.test(line)){
+                found.push({
+                    line: index + 1,
+                    severity: rule.severity,
+                    code: line.trim(),
+                    message: rule.message,
+                    fix: rule.fix
+                });
+            }
+        });
+    });
+
+    const end = performance.now();
+    const total = (end - start).toFixed(2);
+
+    scanTime.innerText = total + " ms";
+    vulnsCount.innerText = found.length;
+
+    if(found.length === 0){
+        log("");
+        log("> [SUCCESS] رائع! لم يتم اكتشاف ثغرات معروفة في الملف.", "#00ff88");
+        log("> الكود الخاص بك يتبع أفضل ممارسات الحماية الحديثة.", "#00ff88");
+    } else {
+        log("");
+        log(`> [WARNING] تم اكتشاف ${found.length} مشكلة أمنية محتملة:`, "#ffcc00");
+        log("------------------------------------------------", "var(--sec)");
+
+        found.forEach((v, i) => {
+            let severityColor = "#ff00cc"; // Critical / High
+            if(v.severity === "MEDIUM") severityColor = "#3333ff";
+
+            log(`[#${i+1}] المخاطرة: ${v.severity}`, severityColor);
+            log(`   السطر الحالي: ${v.line}`, "white");
+            log(`   الكود المصاب: ${v.code}`, "#94a3b8");
+            log(`   المشكلة الأمنية: ${v.message}`, "#ffcc00");
+            log(`   الإصلاح المقترح: ${v.fix}`, "#00ffff");
+            log("------------------------------------------------", "var(--sec)");
+        });
+    }
+}
+
+async function runSpeedTest(){
+    terminal.innerHTML = "";
+    log("> [SPEED TEST] بدء اختبار أداء المحرك السحابي...", "#00ffff");
+
+    const start = performance.now();
+    let total = 0;
+    for(let i=0; i<1000000; i++){
+        total += i;
+    }
+    const end = performance.now();
+    const result = (end - start).toFixed(2);
+
+    await sleep(500);
+
+    log("> تم بنجاح معالجة وتنفيذ (1,000,000) عملية منطقية وحسابية مجردة.", "white");
+    log(`> زمن الاستجابة الفعلي للمعالجة: ${result} ms`, "#00ffff");
+}
+
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+</script>
+
+</body>
+</html>
