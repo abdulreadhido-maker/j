@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrema | الدليل التعليمي والاستشاري</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(45deg, #ff00cc, #3333ff, #00ffff, #ff00cc);
+            --neon-glow: 0 0 10px #ff00cc, 0 0 20px #00ffff, 0 0 30px #3333ff;
+            --bg-dark: #0a0a0c;
+            --card-bg: rgba(25, 25, 28, 0.6);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --white: #ffffff;
+            --text-main: #ffffff;
+            --secondary: #94a3b8;
+            --cyan: #00ffff;
+            --pink: #ff00cc;
+            --green: #00ff88;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg-dark); color: var(--text-main); min-height: 100vh; padding: 120px 8% 60px; position: relative; overflow-x: hidden; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(255, 0, 204, 0.02), transparent 75%); z-index: -1; }
+
+        .back-home { position: fixed; top: 30px; left: 8%; padding: 12px 28px; background: var(--card-bg); border: 1px solid var(--border-color); color: #fff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 14px; backdrop-filter: blur(10px); transition: 0.3s; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .back-home:hover { border-color: var(--pink); box-shadow: 0 0 15px var(--pink); transform: translateY(-2px); }
+
+        .header-area { text-align: center; margin-bottom: 60px; }
+        .header-area h1 { font-size: clamp(32px, 5vw, 46px); font-weight: 900; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 300%; animation: gradientShift 5s infinite linear; }
+        .header-area p { color: var(--secondary); font-size: 17px; margin-top: 15px; max-width: 700px; margin-right: auto; margin-right: auto; line-height: 1.6; }
+
+        /* فهرس التنقل السريع للوصول الفوري للأقسام المعنية */
+        .quick-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 60px; }
+        .quick-nav a { padding: 12px 24px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); color: var(--secondary); text-decoration: none; border-radius: 30px; font-size: 14px; font-weight: 600; transition: all 0.3s ease; }
+        .quick-nav a:hover { color: #fff; border-color: var(--cyan); box-shadow: 0 0 15px rgba(0,255,255,0.3); transform: translateY(-2px); }
+
+        .guide-section { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 40px; margin-bottom: 50px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: 0.3s; scroll-margin-top: 100px; }
+        .section-title { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
+        .section-title span { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .steps-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .step-item { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 16px; position: relative; transition: 0.3s; }
+        .step-item:hover { transform: translateY(-4px); background: rgba(255,255,255,0.04); border-color: rgba(0,255,255,0.2); }
+        .step-num { font-size: 32px; font-weight: 900; color: rgba(255,255,255,0.07); position: absolute; top: 15px; left: 20px; font-style: italic; }
+        .step-item h4 { font-size: 18px; color: #fff; margin-bottom: 10px; }
+        .step-item p { font-size: 14px; color: var(--secondary); line-height: 1.6; }
+
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .tool-link { text-decoration: none; color: inherit; }
+        .tool-card { background: rgba(10, 10, 12, 0.5); border: 1px solid var(--border-color); padding: 30px; border-radius: 16px; text-align: center; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+        .tool-card:hover { transform: translateY(-8px); border-color: var(--cyan); box-shadow: var(--neon-glow); }
+        .tool-icon { font-size: 40px; margin-bottom: 15px; }
+        .tool-card h4 { font-size: 19px; color: #fff; margin-bottom: 8px; }
+        .tool-card p { font-size: 13px; color: var(--secondary); }
+        .tool-btn { display: inline-block; margin-top: 20px; padding: 8px 20px; background: var(--primary-gradient); border-radius: 30px; color: #fff; font-size: 13px; font-weight: bold; }
+
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        @media (max-width: 768px) {
+            body { padding-top: 100px; padding-left: 5%; padding-right: 5%; }
+            .back-home { position: absolute; top: 20px; left: 5%; padding: 8px 20px; }
+            .guide-section { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="back-home">← العودة للرئيسية</a>
+
+<div class="header-area animate__animated animate__fadeInDown">
+    <h1>مركز Torrema التعليمي والاستشاري</h1>
+    <p>بنيتنا الاستشارية المنظمة لمساعدتك في فهم خطط سير وهندسة الأنظمة والتطبيقات البرمجية الذكية.</p>
+</div>
+
+<!-- الفهرس التفاعلي: يوجهك للقسم المطلوب مباشرة بنفس الصفحة -->
+<div class="quick-nav animate__animated animate__fadeIn">
+    <a href="#what-must">📋 ماذا يجب عليك؟</a>
+    <a href="#how-we-do">⚙️ كيف نبني؟</a>
+    <a href="#wireframe-sec">📐 التخطيط والبنية</a>
+    <a href="#support-sec">🛡️ المساعدات والدعم</a>
+    <a href="#interactive-tools">🛠️ المختبر والأدوات التفاعلية</a>
+</div>
+
+<!-- 1. قسم: ماذا يجب عليك فعله؟ -->
+<div id="what-must" class="guide-section">
+    <div class="section-title"><span>📋 ماذا يجب عليك فعله قبل بدء مشروعك؟</span></div>
+    <div class="steps-list">
+        <div class="step-item">
+            <div class="step-num">01</div>
+            <h4>تحديد الأهداف الاستراتيجية</h4>
+            <p>يجب معرفة الغرض من النظام؛ هل هو لجمع العملاء المتوقعين، بيع منتجات رقمية، أم لإدارة عمليات داخلية معقدة؟</p>
+        </div>
+        <div class="step-item">
+            <div class="step-num">02</div>
+            <h4>تحضير المحتوى والهوية</h4>
+            <p>تجهيز النصوص الأساسية للموقع، الشعار (Logo)، الألوان المفضلة، وصور المنتجات لضمان تسريع وثيرة التنفيذ البرمجي.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-num">03</div>
+            <h4>فهم فئة المستخدمين</h4>
+            <p>دراسة سلوك زوار موقعك ومعرفة الأجهزة الأكثر استخداماً لديهم لتكييف واجهة المستخدم بناءً على رغباتهم الحقيقية.</p>
+        </div>
+    </div>
+</div>
+
+<!-- 2. قسم: كيف نبني مشروعك؟ -->
+<div id="how-we-do" class="guide-section">
+    <div class="section-title"><span>⚙️ كيف نقوم بهندسة وبناء أنظمتك؟</span></div>
+    <div class="steps-list">
+        <div class="step-item" style="border-right: 3px solid var(--pink);">
+            <div class="step-num">A</div>
+            <h4>التحليل والنمذجة</h4>
+            <p>نقوم بأخذ متطلباتك وتحويلها إلى مخطط تدفق برمي متكامل (Flowchart) يوضح حركة البيانات بدقة بالغة.</p>
+        </div>
+        <div class="step-item" style="border-right: 3px solid var(--cyan);">
+            <div class="step-num">B</div>
+            <h4>البرمجة وفحص الأمان الحرج</h4>
+            <p>نكتب الأكواد البرمجية بأحدث معايير الأمان (Clean Code) ونمررها عبر ماسحات برمجية لاكتشاف وحل ثغرات حقن البيانات.</p>
+        </div>
+        <div class="step-item" style="border-right: 3px solid var(--green);">
+            <div class="step-num">C</div>
+            <h4>الإطلاق والنشر السحابي</h4>
+            <p>نرفع مشروعك على سيرفرات سحابية فائقة السرعة مهيأة ومجهزة لتحمل آلاف الزوار المتزامنين في نفس اللحظة.</p>
+        </div>
+    </div>
+</div>
+
+<!-- 3. قسم: التخطيط وهندسة البنية -->
+<div id="wireframe-sec" class="guide-section">
+    <div class="section-title"><span>📐 التخطيط السلكي (Wireframing) والبنية</span></div>
+    <p style="color: var(--secondary); margin-bottom: 25px; line-height: 1.6; font-size: 15px;">
+        التخطيط السلكي هو الهيكل العظمي الأسود والأبيض لمشروعك قبل إضافة الألوان. يساعدنا التخطيط في وضع كل زر، نموذج، وصورة في مكانها الصحيح استناداً إلى سيكولوجية الزائر، مما يرفع من معدل التحويل والمبيعات بشكل هائل.
+    </p>
+    <div class="steps-list">
+        <div class="step-item">
+            <h4>ترتيب العناصر بصرياً</h4>
+            <p>وضع العناصر الأهم (مثل زر اتخاذ القرار) في أعلى الصفحة لضمان رؤيتها مباشرة دون الحاجة للتمرير الطويل.</p>
+        </div>
+        <div class="step-item">
+            <h4>قواعد البيانات السحابية</h4>
+            <p>تخطيط الجداول العلائقية وفصل بيانات المستخدمين الحساسة وتشفيرها لمنع أي تسريبات مستقبلية.</p>
+        </div>
+    </div>
+</div>
+
+<!-- 4. قسم: المساعدات والدعم الفني -->
+<div id="support-sec" class="guide-section">
+    <div class="section-title"><span>🛡️ نظام المساعدات والصيانة الشاملة</span></div>
+    <div class="steps-list">
+        <div class="step-item">
+            <h4>المراقبة المستمرة (24/7)</h4>
+            <p>نظام ذكي يقوم بمراقبة السيرفر وإرسال تنبيهات تلقائية في حال حدوث أي ضغط غير طبيعي لحل المشكلة فوراً.</p>
+        </div>
+        <div class="step-item">
+            <h4>النسخ الاحتياطي التلقائي</h4>
+            <p>يتم أخذ نسخ احتياطية دورية (يومية وأسبوعية) من ملفات مشروعك وقواعد البيانات وتخزينها في سيرفرات منفصلة تماماً.</p>
+        </div>
+        <div class="step-item">
+            <h4>التحديثات البرمجية الدورية</h4>
+            <p>تحديث المكتبات البرمجية وسد الثغرات المكتشفة عالمياً لضمان صمود موقعك أمام هجمات الحرمان من الخدمة (DDoS).</p>
+        </div>
+    </div>
+</div>
+
+<!-- 5. قسم: أدوات الفحص والأقسام التعليمية التفاعلية الخارجية -->
+<div id="interactive-tools" class="guide-section" style="border: 1px dashed var(--cyan);">
+    <div class="section-title" style="border: none; margin-bottom: 10px;"><span>🛠️ المختبر البرمجي التفاعلي للأدوات</span></div>
+    <p style="color: var(--secondary); font-size: 14px; margin-bottom: 25px;">انقر على أي أداة بالأسفل لتجربتها عملياً بملفها المنفصل الخاص والمستقر:</p>
+    <div class="tools-grid">
+        <a href="web.html" class="tool-link">
+            <div class="tool-card">
+                <div class="tool-icon">📊</div>
+                <h4>حاسبة الأسعار الذكية</h4>
+                <p>احسب التكلفة التقديرية ووقت التسليم المتوقع لموقعك بدقة كاملة.</p>
+                <span class="tool-btn">دخول الحاسبة</span>
+            </div>
+        </a>
+        <a href="dev.html" class="tool-link">
+            <div class="tool-card">
+                <div class="tool-icon">🛡️</div>
+                <h4>ماسح الأمان السحابي الفعلي</h4>
+                <p>قم باختبار جودة الكود المصدر واكتشاف الثغرات الأمنية الحرجة فوراً.</p>
+                <span class="tool-btn">تشغيل الماسح Security</span>
+            </div>
+        </a>
+        <a href="uiux.html" class="tool-link">
+            <div class="tool-card">
+                <div class="tool-icon">⚖️</div>
+                <h4>مقارن الواجهات البصري</h4>
+                <p>شاهد كيف نصلح الأخطاء البصرية ونحول التصميم العشوائي إلى تحفة فنية مريحة.</p>
+                <span class="tool-btn">تصفح المقارنات UI/UX</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<script>
+    const sections = document.querySelectorAll('.guide-section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, { threshold: 0.05 });
+
+    sections.forEach(sec => {
+        sec.style.opacity = "0";
+        sec.style.transform = "translateY(30px)";
+        sec.style.transition = "all 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
+        observer.observe(sec);
+    });
+</script>
+</body>
+</html>
