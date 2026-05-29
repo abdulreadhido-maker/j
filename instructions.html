@@ -30,14 +30,14 @@
 
         .header-area { text-align: center; margin-bottom: 60px; }
         .header-area h1 { font-size: clamp(32px, 5vw, 46px); font-weight: 900; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 300%; animation: gradientShift 5s infinite linear; }
-        .header-area p { color: var(--secondary); font-size: 17px; margin-top: 15px; max-width: 700px; margin-right: auto; margin-right: auto; line-height: 1.6; }
+        .header-area p { color: var(--secondary); font-size: 17px; margin-top: 15px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
         /* فهرس التنقل السريع للوصول الفوري للأقسام المعنية */
         .quick-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 60px; }
         .quick-nav a { padding: 12px 24px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); color: var(--secondary); text-decoration: none; border-radius: 30px; font-size: 14px; font-weight: 600; transition: all 0.3s ease; }
         .quick-nav a:hover { color: #fff; border-color: var(--cyan); box-shadow: 0 0 15px rgba(0,255,255,0.3); transform: translateY(-2px); }
 
-        .guide-section { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 40px; margin-bottom: 50px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: 0.3s; scroll-margin-top: 100px; }
+        .guide-section { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 40px; margin-bottom: 50px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: opacity 0.6s ease, transform 0.6s ease; scroll-margin-top: 100px; }
         .section-title { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
         .section-title span { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
@@ -48,6 +48,7 @@
         .step-item h4 { font-size: 18px; color: #fff; margin-bottom: 10px; }
         .step-item p { font-size: 14px; color: var(--secondary); line-height: 1.6; }
 
+        /* المختبر التفاعلي للروابط */
         .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
         .tool-link { text-decoration: none; color: inherit; }
         .tool-card { background: rgba(10, 10, 12, 0.5); border: 1px solid var(--border-color); padding: 30px; border-radius: 16px; text-align: center; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
@@ -56,6 +57,14 @@
         .tool-card h4 { font-size: 19px; color: #fff; margin-bottom: 8px; }
         .tool-card p { font-size: 13px; color: var(--secondary); }
         .tool-btn { display: inline-block; margin-top: 20px; padding: 8px 20px; background: var(--primary-gradient); border-radius: 30px; color: #fff; font-size: 13px; font-weight: bold; }
+
+        /* أداة قياس الجاهزية الذكية الجديدة */
+        .checker-box { background: rgba(10, 10, 12, 0.4); border: 1px dashed rgba(0, 255, 255, 0.2); border-radius: 16px; padding: 25px; margin-top: 20px; }
+        .checker-option { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; cursor: pointer; font-size: 15px; color: var(--secondary); transition: 0.2s; }
+        .checker-option:hover { color: #fff; }
+        .checker-option input { width: 18px; height: 18px; accent-color: var(--cyan); cursor: pointer; }
+        .checker-result { margin-top: 25px; padding: 20px; border-radius: 12px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; display: none; }
+        .checker-score { font-size: 24px; font-weight: 800; color: var(--green); margin-bottom: 5px; }
 
         @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
@@ -75,16 +84,15 @@
     <p>بنيتنا الاستشارية المنظمة لمساعدتك في فهم خطط سير وهندسة الأنظمة والتطبيقات البرمجية الذكية.</p>
 </div>
 
-<!-- الفهرس التفاعلي: يوجهك للقسم المطلوب مباشرة بنفس الصفحة -->
 <div class="quick-nav animate__animated animate__fadeIn">
     <a href="#what-must">📋 ماذا يجب عليك؟</a>
+    <a href="#project-checker">⚡ فاحص جاهزية المشروع</a>
     <a href="#how-we-do">⚙️ كيف نبني؟</a>
     <a href="#wireframe-sec">📐 التخطيط والبنية</a>
     <a href="#support-sec">🛡️ المساعدات والدعم</a>
     <a href="#interactive-tools">🛠️ المختبر والأدوات التفاعلية</a>
 </div>
 
-<!-- 1. قسم: ماذا يجب عليك فعله؟ -->
 <div id="what-must" class="guide-section">
     <div class="section-title"><span>📋 ماذا يجب عليك فعله قبل بدء مشروعك؟</span></div>
     <div class="steps-list">
@@ -106,7 +114,35 @@
     </div>
 </div>
 
-<!-- 2. قسم: كيف نبني مشروعك؟ -->
+<div id="project-checker" class="guide-section">
+    <div class="section-title"><span>⚡ مستشار Torrema الآلي لجاهزية فكرتك</span></div>
+    <p style="color: var(--secondary); font-size: 15px; margin-bottom: 20px; line-height: 1.6;">حدد العناصر التي قمت بإعدادها بالفعل حتى الآن، لتقوم خوارزمية الموقع بحساب نسبة استعداد مشروعك للانطلاق البرمجي الفعلي فوراً:</p>
+    
+    <div class="checker-box">
+        <label class="checker-option">
+            <input type="checkbox" class="check-item" value="25" onchange="runCheckReady()">
+            <span>لدي فكرة واضحة ومكتوبة ومحددة الأهداف بدقة.</span>
+        </label>
+        <label class="checker-option">
+            <input type="checkbox" class="check-item" value="25" onchange="runCheckReady()">
+            <span>قمت بتجهيز النصوص الأساسية أو اللوجو الخاص بالهوية.</span>
+        </label>
+        <label class="checker-option">
+            <input type="checkbox" class="check-item" value="25" onchange="runCheckReady()">
+            <span>أعرف بالضبط من هم المنافسون وما الميزة التي سأقدمها.</span>
+        </label>
+        <label class="checker-option">
+            <input type="checkbox" class="check-item" value="25" onchange="runCheckReady()">
+            <span>رصدت الميزانية التقديرية لبدء العمل والإنفاق على السيرفرات والتسويق.</span>
+        </label>
+
+        <div id="ready-output" class="checker-result">
+            <div class="checker-score" id="ready-score">0%</div>
+            <p id="ready-status" style="font-size: 14px; color: var(--secondary); line-height: 1.5;"></p>
+        </div>
+    </div>
+</div>
+
 <div id="how-we-do" class="guide-section">
     <div class="section-title"><span>⚙️ كيف نقوم بهندسة وبناء أنظمتك؟</span></div>
     <div class="steps-list">
@@ -128,7 +164,6 @@
     </div>
 </div>
 
-<!-- 3. قسم: التخطيط وهندسة البنية -->
 <div id="wireframe-sec" class="guide-section">
     <div class="section-title"><span>📐 التخطيط السلكي (Wireframing) والبنية</span></div>
     <p style="color: var(--secondary); margin-bottom: 25px; line-height: 1.6; font-size: 15px;">
@@ -146,7 +181,6 @@
     </div>
 </div>
 
-<!-- 4. قسم: المساعدات والدعم الفني -->
 <div id="support-sec" class="guide-section">
     <div class="section-title"><span>🛡️ نظام المساعدات والصيانة الشاملة</span></div>
     <div class="steps-list">
@@ -165,7 +199,6 @@
     </div>
 </div>
 
-<!-- 5. قسم: أدوات الفحص والأقسام التعليمية التفاعلية الخارجية -->
 <div id="interactive-tools" class="guide-section" style="border: 1px dashed var(--cyan);">
     <div class="section-title" style="border: none; margin-bottom: 10px;"><span>🛠️ المختبر البرمجي التفاعلي للأدوات</span></div>
     <p style="color: var(--secondary); font-size: 14px; margin-bottom: 25px;">انقر على أي أداة بالأسفل لتجربتها عملياً بملفها المنفصل الخاص والمستقر:</p>
@@ -198,6 +231,37 @@
 </div>
 
 <script>
+    // وظيفة فاحص الاستعداد البرمجي التفاعلي المستحدث
+    function runCheckReady() {
+        let items = document.querySelectorAll('.check-item');
+        let score = 0;
+        items.forEach(el => { if(el.checked) score += parseInt(el.value); });
+        
+        let resultBox = document.getElementById('ready-output');
+        let scoreTxt = document.getElementById('ready-score');
+        let statusTxt = document.getElementById('ready-status');
+        
+        resultBox.style.display = "block";
+        scoreTxt.innerText = score + "%";
+        
+        if(score === 0) {
+            resultBox.style.display = "none";
+        } else if(score <= 25) {
+            scoreTxt.style.color = "#ff00cc";
+            statusTxt.innerText = "فكرتك في البداية تماماً! ننصحك بقراءة قسم (ماذا يجب عليك فعله) بالكامل لترتيب الهيكل الأساسي.";
+        } else if(score <= 50) {
+            scoreTxt.style.color = "#3333ff";
+            statusTxt.innerText = "تقدم جيد! قمت بقطع خطوة ممتازة، ولكن يفضل إعداد العناصر المتبقية لضمان دقة التنفيذ الهندسي.";
+        } else if(score <= 75) {
+            scoreTxt.style.color = "#00ffff";
+            statusTxt.innerText = "مشروعك جاهز بنسبة ممتازة! يمكنك الآن تجربة (حاسبة الأسعار بالأسفل) لأخذ تصور حقيقي عن التكلفة.";
+        } else {
+            scoreTxt.style.color = "#00ff88";
+            statusTxt.innerText = "مذهل! مشروعك جاهز 100% للتطوير الفوري. فكرتك ناضجة ومكتملة المعالم ومستعدة للإطلاق البرمجي في أي وقت!";
+        }
+    }
+
+    // إظهار عناصر الصفحة بسلاسة أثناء التمرير وإصلاح خطأ العرض القديم
     const sections = document.querySelectorAll('.guide-section');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -211,7 +275,7 @@
     sections.forEach(sec => {
         sec.style.opacity = "0";
         sec.style.transform = "translateY(30px)";
-        sec.style.transition = "all 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
+        sec.style.transition = "opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
         observer.observe(sec);
     });
 </script>
