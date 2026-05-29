@@ -1,175 +1,388 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Torrema | الفخامة والذكاء المتكامل</title>
-<style>
-:root {
-  --primary-gradient: linear-gradient(45deg, #ff00cc, #3333ff, #00ffff, #ff00cc);
-  --secondary: #94a3b8;
-  --bg-dark: #0a0a0c;
-  --card-bg: rgba(25, 25, 28, 0.6);
-  --border-color: rgba(255, 255, 255, 0.1);
-  --white: #ffffff;
-}
-*{ margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
-body{ background: var(--bg-dark); color: white; overflow-x: hidden; }
-body::before{ content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(255, 0, 204, 0.05), transparent 70%), radial-gradient(circle, rgba(51, 51, 255, 0.05) 1px, transparent 1px); background-size: 100% 100%, 40px 40px; z-index: -1; }
-nav{ position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(10, 10, 12, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
-nav h1{ font-size: 28px; font-weight: 800; background: var(--primary-gradient); background-size: 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientShift 5s infinite linear; }
-.nav-links { display: flex; gap: 25px; }
-nav a{ color: var(--secondary); text-decoration: none; font-size: 16px; font-weight: 500; }
-.hero{ height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
-.hero-content { max-width: 800px; opacity: 0; animation: fadeInUp 1s ease-out forwards; }
-.hero h1{ font-size: clamp(40px, 8vw, 75px); font-weight: 800; margin-bottom: 20px; }
-.hero p{ color: var(--secondary); font-size: clamp(16px, 3vw, 20px); margin-bottom: 35px; line-height: 1.6; }
-.btn-cyber { padding: 14px 35px; background: var(--primary-gradient); background-size: 300%; border: none; border-radius: 50px; color: var(--white); font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; animation: gradientShift 5s infinite linear; }
-.btn-cyber:hover{ transform: translateY(-3px) scale(1.05); }
-section{ padding: 100px 8% 60px; }
-section h2 { font-size: 36px; text-align: center; margin-bottom: 50px; position: relative; }
-.chat-section { max-width: 900px; margin: 0 auto; }
-.chat-window { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; backdrop-filter: blur(12px); display: flex; flex-direction: column; height: 600px; overflow: hidden; }
-.chat-header { padding: 20px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 12px; }
-.status-dot { width: 8px; height: 8px; background-color: #00ffff; border-radius: 50%; }
-.chat-body { flex: 1; overflow-y: auto; padding: 25px; display: flex; flex-direction: column; gap: 20px; }
-.msg-wrapper { display: flex; width: 100%; }
-.msg-wrapper.user-msg { justify-content: flex-start; }
-.msg-wrapper.bot-msg { justify-content: flex-end; }
-.msg-bubble { max-width: 80%; padding: 14px 20px; border-radius: 18px; font-size: 15px; line-height: 1.6; }
-.user-msg .msg-bubble { background: linear-gradient(135deg, #3333ff, #2563eb); color: var(--white); border-bottom-right-radius: 4px; }
-.bot-msg .msg-bubble { background: rgba(255, 255, 255, 0.05); color: #f1f5f9; border-bottom-left-radius: 4px; border: 1px solid var(--border-color); }
-.chat-footer { padding: 20px; background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--border-color); display: flex; gap: 15px; align-items: center; }
-.chat-footer textarea { flex: 1; background: rgba(20, 20, 25, 0.8); border: 1px solid var(--border-color); border-radius: 14px; padding: 14px 20px; color: white; font-size: 15px; outline: none; resize: none; height: 50px; }
-.btn-send { padding: 0 25px; height: 50px; border-radius: 14px; }
-.ai-loading-dots::after { content: '...'; display: inline-block; animation: dotPulse 1.5s infinite steps(4, start); width: 0px; }
-@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes dotPulse { 0% { width: 0px; } 50% { width: 8px; } 100% { width: 12px; } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrema | لتطوير البرمجيات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(45deg, #ff00cc, #3333ff, #00ffff, #ff00cc);
+            --neon-glow: 0 0 10px #ff00cc, 0 0 20px #00ffff, 0 0 30px #3333ff;
+            --bg-dark: #0a0a0c;
+            --card-bg: rgba(25, 25, 28, 0.6);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --white: #ffffff;
+            --text-main: #ffffff;
+            --secondary: #94a3b8;
+            --nav-bg: rgba(10, 10, 12, 0.8);
+            --price-color: #00ffff;
+            --blur-amount: 0px;
+        }
+
+        [data-theme="light"] {
+            --bg-dark: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --white: #0f172a;
+            --text-main: #0f172a;
+            --secondary: #475569;
+            --nav-bg: rgba(248, 250, 252, 0.85);
+            --price-color: #3333ff;
+            --neon-glow: 0 0 8px rgba(255, 0, 204, 0.4), 0 0 15px rgba(51, 51, 255, 0.3);
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-dark); color: var(--text-main); overflow-x: hidden;
+            filter: blur(var(--blur-amount)); transition: filter 0.4s ease, background 0.5s ease, color 0.5s ease;
+        }
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 0, 204, 0.03), transparent 70%); z-index: -1;
+        }
+
+        /* شاشة اللودنج */
+        #loading-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #050507; z-index: 9999; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; transition: opacity 0.4s ease;
+        }
+        .progress-bar-container {
+            width: 200px; height: 3px; background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px; overflow: hidden; position: relative; margin-top: 20px;
+        }
+        .progress-line {
+            width: 100%; height: 100%; background: var(--primary-gradient);
+            background-size: 300%; position: absolute; left: -100%;
+            animation: loadAdvance 1.2s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+        }
+        #loading-screen h2 {
+            font-size: 42px; font-weight: 900; background: var(--primary-gradient); background-size: 300%;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: logoPulse 1.5s infinite ease-in-out, gradientShift 5s infinite linear; letter-spacing: 2px;
+        }
+
+        /* قائمة المهمات (Nav) بتأثير النيون المتوهج والمتحرك */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 8%; background: var(--nav-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color); z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        nav h1 {
+            font-size: 28px; font-weight: 800; background: var(--primary-gradient); background-size: 300%;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientShift 5s infinite linear; cursor: pointer;
+        }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        nav a { 
+            color: var(--secondary); text-decoration: none; font-size: 15px; font-weight: 600; 
+            position: relative; padding: 8px 16px; border-radius: 30px; border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+        }
+        nav a:hover { 
+            color: #ffffff; background: rgba(255, 0, 204, 0.03); border-color: rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 8px #ff00cc, 0 0 15px #00ffff; box-shadow: var(--neon-glow), inset 0 0 8px rgba(255, 0, 204, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+        .menu-toggle span { width: 25px; height: 3px; background: var(--text-main); border-radius: 2px; transition: 0.3s; }
+        .controls-btn { display: flex; gap: 10px; align-items: center; }
+        .btn-toggle {
+            background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-main);
+            padding: 8px 14px; border-radius: 30px; cursor: pointer; font-size: 14px; font-weight: 600;
+            display: flex; align-items: center; gap: 5px; transition: transform 0.2s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .btn-toggle:hover { border-color: #ff00cc; transform: scale(1.05); box-shadow: 0 0 10px rgba(255,0,204,0.3); }
+
+        /* واجهة الهيرو */
+        .hero { height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+        .hero-content { max-width: 800px; }
+        .hero h1 { font-size: clamp(40px, 8vw, 75px); font-weight: 800; color: var(--white); text-shadow: 0 0 30px rgba(255, 255, 255, 0.1); margin-bottom: 20px; display: inline-block; min-height: 1.2em; }
+        .hero p { color: var(--secondary); font-size: clamp(16px, 3vw, 20px); margin-bottom: 35px; line-height: 1.6; }
+        .btn-cyber {
+            padding: 14px 35px; background: var(--primary-gradient); background-size: 300%; border: none; border-radius: 50px;
+            color: #ffffff; font-size: 16px; font-weight: 700; cursor: pointer; text-decoration: none;
+            box-shadow: 0 4px 20px rgba(255, 0, 204, 0.3); animation: neonPulse 2s infinite, gradientShift 5s infinite linear;
+        }
+
+        section { padding: 100px 8% 60px; opacity: 0; transform: translateY(50px); filter: blur(5px); transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), filter 0.9s ease; }
+        section.in-view { opacity: 1; transform: translateY(0); filter: blur(0px); }
+        section h2 { font-size: 36px; text-align: center; margin-bottom: 50px; position: relative; color: var(--white); }
+        section h2::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background: var(--primary-gradient); background-size: 300%; animation: gradientShift 5s infinite linear; }
+
+        /* الباقات والأسعار */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 20px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 40px 30px; border-radius: 16px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); text-align: center; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, box-shadow 0.3s; }
+        .card:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(255, 0, 204, 0.5); box-shadow: var(--neon-glow); }
+        .price-tag-old { text-decoration: line-through; color: var(--secondary); font-size: 14px; margin-left: 5px; }
+        .price-tag-new { color: var(--price-color); font-size: 24px; font-weight: 800; }
+        .offer-badge { background: #ff00cc; color: white; padding: 4px 10px; font-size: 11px; border-radius: 20px; font-weight: bold; display: inline-block; margin-bottom: 10px; box-shadow: 0 0 8px #ff00cc; }
+
+        /* معرض الأعمال */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .gallery-item { height: 260px; border: 1px solid var(--border-color); border-radius: 15px; position: relative; overflow: hidden; cursor: pointer; background: #16161a; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(10, 10, 12, 0.95) 20%, rgba(10, 10, 12, 0.2)); display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; opacity: 0; transition: opacity 0.4s ease; backdrop-filter: blur(3px); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* نموذج التواصل */
+        .contact-container { max-width: 600px; margin: 0 auto; }
+        .under-development-tag { background: rgba(255, 0, 204, 0.08); border: 1px dashed #ff00cc; padding: 12px; border-radius: 12px; text-align: center; color: #ff00cc; font-weight: 600; font-size: 14px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 16px 20px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; color: var(--text-main); font-size: 15px; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #ff00cc; box-shadow: 0 0 15px rgba(255, 0, 204, 0.3); }
+
+        #topBtn { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--primary-gradient); background-size: 300%; border: none; border-radius: 50%; color: #ffffff; font-size: 22px; font-weight: bold; cursor: pointer; display: none; justify-content: center; align-items: center; z-index: 99; animation: gradientShift 5s infinite linear; box-shadow: 0 0 15px #ff00cc; }
+
+        @keyframes loadAdvance { 0% { left: -100%; width: 30%; } 50% { left: 20%; width: 60%; } 100% { left: 100%; width: 100%; } }
+        @keyframes logoPulse { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255,0,204,0.3)); } 50% { transform: scale(1.03); filter: drop-shadow(0 0 25px rgba(0,255,255,0.6)); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes neonPulse { 0% { box-shadow: 0 4px 20px rgba(255, 0, 204, 0.3); } 50% { box-shadow: 0 4px 30px rgba(0, 255, 255, 0.6), 0 0 10px rgba(255, 0, 204, 0.4); } 100% { box-shadow: 0 4px 20px rgba(255, 0, 204, 0.3); } }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 5%; }
+            .menu-toggle { display: flex; }
+            .nav-links {
+                display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%;
+                background: var(--bg-dark); border-bottom: 1px solid var(--border-color); padding: 20px; gap: 15px; text-align: center;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            }
+            .nav-links.active { display: flex; }
+            .nav-right { gap: 10px; }
+        }
+    </style>
 </head>
 <body>
 
+<div id="loading-screen">
+    <h2>Torrema</h2>
+    <div class="progress-bar-container"><div class="progress-line"></div></div>
+</div>
+
 <nav>
-  <h1>Torrema</h1>
-  <div class="nav-links">
-    <a href="#home">الرئيسية</a>
-    <a href="#ai-assistant">المساعد الذكي</a>
-  </div>
+    <h1 id="nav-logo" onclick="scrollTopPage()">Torrema</h1>
+    <div class="nav-right">
+        <button class="menu-toggle" id="menu-btn" onclick="toggleMenu()" aria-label="Toggle Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="nav-links">
+            <a href="#home" id="lnk-home" class="internal-link">الرئيسية</a>
+            <a href="instructions.html" id="lnk-services" class="external-link">التعليمات البرمجية</a>
+            <a href="#pricing" id="lnk-pricing" class="internal-link">الأسعار</a>
+            <a href="#gallery" id="lnk-gallery" class="internal-link">المعرض</a>
+            <a href="#contact" id="lnk-contact" class="internal-link">التواصل</a>
+        </div>
+        <div class="controls-btn">
+            <button class="btn-toggle" id="theme-btn" onclick="toggleTheme()">🌙 داكن</button>
+            <button class="btn-toggle" id="lang-btn" onclick="toggleLang()">🌐 EN</button>
+        </div>
+    </div>
 </nav>
 
 <section class="hero" id="home">
-  <div class="hero-content">
-    <h1 id="title">Torrema</h1>
-    <p>بساطة وأداء عالي مستقر 100% بدون تعقيدات الخوادم.</p>
-  </div>
+    <div class="hero-content">
+        <h1 id="title">Torrema</h1>
+        <p id="hero-p">أهلاً بك في منصة Torrema لتطوير الحلول البرمجية الذكية وتصميم المواقع الإلكترونية الاحترافية.</p>
+        <a href="instructions.html" class="btn-cyber external-link" id="hero-btn" style="text-decoration:none; display:inline-block;">تصفح قسم التعليمات</a>
+    </div>
 </section>
 
-<section id="ai-assistant" class="chat-section">
-  <h2>مساعد Torrema المباشر</h2>
-  <div class="chat-window">
-    <div class="chat-header">
-      <div class="status-dot"></div>
-      <div style="font-size: 16px; font-weight: 600;">مستشار الأنظمة الذكي المباشر</div>
+<section id="pricing">
+    <h2 id="sec-price-title">الباقات والأسعار</h2>
+    <div class="grid-container">
+        <div class="card">
+            <span class="offer-badge" id="badge-discount">خصم 40% لفترة محدودة</span>
+            <h3 id="p1-title">موقع تعريفي / هبوط</h3>
+            <div style="margin: 15px 0;">
+                <span class="price-tag-old">500$</span>
+                <span class="price-tag-new">299$</span>
+            </div>
+            <p style="font-size:13px; color:var(--secondary);" id="p1-desc">تصميم صفحة هبوط احترافية متكاملة ومخصصة لخدماتك لجمع العملاء المهتمين بجودة عالية وسرعة فائقة.</p>
+        </div>
+        <div class="card" style="border-color: #ff00cc;">
+            <span class="offer-badge" id="badge-best">الأكثر طلباً 🔥</span>
+            <h3 id="p2-title">موقع شركات ونظام مخصص</h3>
+            <div style="margin: 15px 0;">
+                <span class="price-tag-old">1200$</span>
+                <span class="price-tag-new">699$</span>
+            </div>
+            <p style="font-size:13px; color:var(--secondary);" id="p2-desc">برمجة نظام مخصص متكامل مع لوحة تحكم إدارية ذكية وقواعد بيانات سحابية فائقة الأمان والسرعة.</p>
+        </div>
     </div>
-    <div class="chat-body" id="chat-body">
-      <div class="msg-wrapper bot-msg">
-        <div class="msg-bubble">مرحباً بك عبد العزيز. أنا مستشارك الذكي، مبرمج الآن على محرك جوجل الرسمي المباشر وجاهز للرد الفوري على كل أسئلتك!</div>
-      </div>
-    </div>
-    <div class="chat-footer">
-      <textarea id="chat-input" placeholder="اكتب سؤالك هنا..."></textarea>
-      <button onclick="sendChatMessage()" class="btn-cyber btn-send">إرسال</button>
-    </div>
-  </div>
 </section>
+
+<section id="gallery">
+    <h2 id="sec-gallery-title">معرض الأعمال</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=600&auto=format&fit=crop&q=80" alt="برمجة الأنظمة">
+            <div class="gallery-overlay">
+                <h3 id="gal1-title">تطوير الهياكل البرمجية</h3>
+                <p id="gal1-desc">بناء أنظمة خلفية وقواعد بيانات سريعة البنية وقابلة للتوسع المستقبلي.</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=600&auto=format&fit=crop&q=80" alt="تطوير ويب">
+            <div class="gallery-overlay">
+                <h3 id="gal2-title">بناء لوحات التحكم الذكية</h3>
+                <p id="gal2-desc">لوحات إدارية مرنة ومفصلة لقراءة وتحليل البيانات الحية للمشاريع.</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" alt="هندسة البرمجيات">
+            <div class="gallery-overlay">
+                <h3 id="gal3-title">تنفيذ الأنظمة السحابية</h3>
+                <p id="gal3-desc">هندسة سيرفرات سحابية قادرة على تحمل الضغط العالي والزوار المتزامنين.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 id="sec-contact-title">تواصل معنا</h2>
+    <div class="card contact-container">
+        <div class="under-development-tag" id="dev-tag">⚠️ عذراً، هذا القسم ونموذج الإرسال حالياً تحت التطوير والصيانة</div>
+        <form id="directMailForm">
+            <div class="form-group"><input type="text" id="senderName" placeholder="الاسم الكريم" required></div>
+            <div class="form-group"><input type="email" id="senderEmail" placeholder="البريد الإلكتروني" required></div>
+            <div class="form-group"><textarea id="senderMessage" placeholder="تفاصيل مشروعك أو رسالتك..." required></textarea></div>
+            <button type="submit" class="btn-cyber" style="width: 100%; border-radius: 12px;" id="submit-btn">إرسال الرسالة عبر الجيميل</button>
+        </form>
+    </div>
+</section>
+
+<button id="topBtn" onclick="scrollTopPage()">↑</button>
 
 <script>
-// ذاكرة حوار مخصصة لنظام جوجل
-let chatHistory = [];
+    const loaderScreen = document.getElementById("loading-screen");
+    const navLinks = document.getElementById("nav-links");
 
-function formatBotResponse(text) {
-    if (!text) return "";
-    let formatted = text.replace(/```([\s\S]*?)```/g, function(match, code) {
-        return `<pre style="background: #000; padding: 15px; border-radius: 12px; direction: ltr; text-align: left; overflow-x: auto; color: #00ffff;"><code>${code.trim()}</code></pre>`;
+    function showLoader(duration, callback) {
+        loaderScreen.style.display = "flex"; loaderScreen.style.opacity = "1";
+        setTimeout(() => {
+            if(callback) callback();
+            loaderScreen.style.opacity = "0";
+            setTimeout(() => { loaderScreen.style.display = "none"; }, 400);
+        }, duration);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => { showLoader(800); });
+    document.querySelectorAll(".internal-link").forEach(link => { link.addEventListener("click", () => { navLinks.classList.remove("active"); }); });
+    document.querySelectorAll(".external-link").forEach(link => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault(); const dest = link.getAttribute("href");
+            showLoader(500, () => { window.location.href = dest; });
+        });
     });
-    return formatted.replace(/\n/g, '<br>');
-}
 
-async function sendChatMessage() {
-    const inputField = document.getElementById('chat-input');
-    const chatBody = document.getElementById('chat-body');
-    const messageText = inputField.value.trim();
+    function toggleMenu() { navLinks.classList.toggle("active"); }
 
-    if (!messageText) return;
-
-    // 1. عرض رسالة المستخدم
-    const userWrapper = document.createElement('div');
-    userWrapper.className = 'msg-wrapper user-msg';
-    userWrapper.innerHTML = `<div class="msg-bubble">${messageText}</div>`;
-    chatBody.appendChild(userWrapper);
-
-    inputField.value = '';
-
-    // 2. إضافة فقاعة التفكير
-    const botWrapper = document.createElement('div');
-    botWrapper.className = 'msg-wrapper bot-msg';
-    botWrapper.innerHTML = `<div class="msg-bubble"><span class="ai-loading-dots">جاري كتابة الرد</span></div>`;
-    chatBody.appendChild(botWrapper);
-    chatBody.scrollTop = chatBody.scrollHeight;
-
-    // تحديث ذاكرة حوار جوجل
-    chatHistory.push({ role: "user", parts: [{ text: messageText }] });
-
-    // رابط الـ API الرسمي والمباشر من جوجل لموديل Gemini الشهير
-    // ملاحظة: يُفضل دائماً في المشاريع الكبيرة إخفاء المفاتيح، لكن وضعناه هنا للتسهيل والتشغيل المباشر 100%
-    const apiKey = "AIzaSyD" + "N0vO7Gq7F" + "Zq2-qS9T-6G" + "Zp0P_fF" + "xL6_E"; // تم دمج المفتاح بطريقة آمنة لتخطي فلاتر الحظر الحساسة للـ Codespaces
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
-
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ 
-                contents: chatHistory,
-                generationConfig: { temperature: 0.7 }
-            })
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('in-view');
+            else entry.target.classList.remove('in-view');
         });
+    }, { threshold: 0.1 });
+    sections.forEach(section => { observer.observe(section); });
 
-        const data = await response.json();
-        
-        if (data.candidates && data.candidates[0].content.parts[0].text) {
-            const botReply = data.candidates[0].content.parts[0].text;
+    function scrollTopPage(){ window.scrollTo({top:0, behavior:"smooth"}); }
+    window.onscroll = function(){
+        let btn = document.getElementById("topBtn");
+        if(document.documentElement.scrollTop > 400) btn.style.display = "flex"; else btn.style.display = "none";
+    };
 
-            // عرض الرد النهائي
-            const finalBubble = botWrapper.querySelector('.msg-bubble');
-            finalBubble.innerHTML = formatBotResponse(botReply);
-            
-            // حفظ رد البوت في الذاكرة
-            chatHistory.push({ role: "model", parts: [{ text: botReply }] });
-        } else {
-            throw new Error();
+    let currentTheme = localStorage.getItem("theme") || "dark";
+    let currentLang = localStorage.getItem("lang") || "ar";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    applyThemeUI(currentTheme);
+
+    function applyThemeUI(theme) { document.getElementById("theme-btn").innerHTML = theme === "light" ? "☀️ فاتح" : "🌙 داكن"; }
+    function toggleTheme() {
+        document.body.style.setProperty('--blur-amount', '12px');
+        setTimeout(() => {
+            currentTheme = currentTheme === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", currentTheme);
+            localStorage.setItem("theme", currentTheme);
+            applyThemeUI(currentTheme);
+            setTimeout(() => { document.body.style.setProperty('--blur-amount', '0px'); }, 150);
+        }, 200);
+    }
+
+    const languages = {
+        ar: {
+            dir: "rtl", home: "الرئيسية", services: "التعليمات البرمجية", pricing: "الأسعار", gallery: "المعرض", contact: "التواصل",
+            heroP: "أهلاً بك في منصة Torrema لتطوير الحلول البرمجية الذكية وتصميم المواقع الإلكترونية الاحترافية.",
+            heroBtn: "تصفح قسم التعليمات", pTitle: "الباقات والأسعار", gTitle: "معرض الأعمال", cTitle: "تواصل معنا",
+            p1T: "موقع تعريفي / هبوط", p1D: "تصميم صفحة هبوط احترافية متكاملة ومخصصة لخدماتك لجمع العملاء المهتمين بجودة عالية وسرعة فائقة.",
+            p2T: "موقع شركات ونظام مخصص", p2D: "برمجة نظام مخصص متكامل مع لوحة تحكم إدارية ذكية وقواعد بيانات سحابية فائقة الأمان والسرعة.",
+            bdg1: "خصم 40% لفترة محدودة", bdg2: "الأكثر طلباً 🔥",
+            gal1: "تطوير الهياكل البرمجية", gal1D: "بناء أنظمة خلفية وقواعد بيانات سريعة البنية وقابلة للتوسع المستقبلي.",
+            gal2: "بناء لوحات التحكم الذكية", gal2D: "لوحات إدارية مرنة ومفصلة لقراءة وتحليل البيانات الحية للمشاريع.",
+            gal3: "تنفيذ الأنظمة السحابية", gal3D: "هندسة سيرفرات سحابية قادرة على تحمل الضغط العالي والزوار المتزامنين.",
+            devTag: "⚠️ عذراً، هذا القسم ونموذج الإرسال حالياً تحت التطوير والصيانة",
+            subBtn: "إرسال الرسالة عبر الجيميل", pName: "الاسم الكريم", pEmail: "البريد الإلكتروني", pMsg: "تفاصيل مشروعك أو رسالتك..."
+        },
+        en: {
+            dir: "ltr", home: "Home", services: "Instructions", pricing: "Pricing", gallery: "Gallery", contact: "Contact",
+            heroP: "Welcome to Torrema platform for developing smart software solutions and modern web design.",
+            heroBtn: "Browse Instructions", pTitle: "Our Rates & Offers", gTitle: "Our Gallery", cTitle: "Contact Us",
+            p1T: "Landing Page Package", p1D: "Bespoke high-performance landing page layout assembled perfectly for rapid customer capture and extreme speed.",
+            p2T: "Enterprise Bespoke Software", p2D: "Comprehensive custom system crafted alongside interactive admin panels and ultra-fast secure cloud servers.",
+            bdg1: "40% Off Limited Time Offer", bdg2: "Most Popular 🔥",
+            gal1: "Backend Architectures", gal1D: "Building fast backend systems and scalable structural data environments.",
+            gal2: "Smart Dashboards Dev", gal2D: "Developing crisp, insightful dashboard modules for tracking live parameters easily.",
+            gal3: "Cloud Systems Deployment", gal3D: "Engineering balanced cloud node configurations to resist heavy concurrent spikes seamlessly.",
+            devTag: "⚠️ Sorry, this section and form are currently under development & maintenance",
+            subBtn: "Send Message Via Gmail", pName: "Your Full Name", pEmail: "Your Email Address", pMsg: "Your project details or message..."
         }
+    };
 
-    } catch (error) {
-        const finalBubble = botWrapper.querySelector('.msg-bubble');
-        finalBubble.style.color = '#ff3366';
-        finalBubble.innerHTML = `⚠️ تم رفض الاتصال بالمفتاح الحالي. اكتب لي أي سؤال تريد اختباره لأرد عليك أنا مباشرة وأصيغ لك الأكواد البرمجية الجاهزة لموقعك!`;
+    function applyLanguage(lang) {
+        const data = languages[lang]; document.documentElement.setAttribute("dir", data.dir); document.documentElement.setAttribute("lang", lang);
+        document.getElementById("lnk-home").innerText = data.home; document.getElementById("lnk-services").innerText = data.services;
+        document.getElementById("lnk-pricing").innerText = data.pricing; document.getElementById("lnk-gallery").innerText = data.gallery;
+        document.getElementById("lnk-contact").innerText = data.contact; document.getElementById("hero-p").innerText = data.heroP;
+        document.getElementById("hero-btn").innerText = data.heroBtn; document.getElementById("sec-price-title").innerText = data.pTitle;
+        document.getElementById("sec-gallery-title").innerText = data.gTitle; document.getElementById("sec-contact-title").innerText = data.cTitle;
+        document.getElementById("p1-title").innerText = data.p1T; document.getElementById("p1-desc").innerText = data.p1D;
+        document.getElementById("p2-title").innerText = data.p2T; document.getElementById("p2-desc").innerText = data.p2D;
+        document.getElementById("badge-discount").innerText = data.bdg1; document.getElementById("badge-best").innerText = data.bdg2;
+        document.getElementById("gal1-title").innerText = data.gal1; document.getElementById("gal1-desc").innerText = data.gal1D;
+        document.getElementById("gal2-title").innerText = data.gal2; document.getElementById("gal2-desc").innerText = data.gal2D;
+        document.getElementById("gal3-title").innerText = data.gal3; document.getElementById("gal3-desc").innerText = data.gal3D;
+        document.getElementById("dev-tag").innerText = data.devTag; document.getElementById("submit-btn").innerText = data.subBtn;
+        document.getElementById("senderName").placeholder = data.pName; document.getElementById("senderEmail").placeholder = data.pEmail;
+        document.getElementById("senderMessage").placeholder = data.pMsg; document.getElementById("lang-btn").innerText = lang === "ar" ? "🌐 EN" : "🌐 AR";
     }
-    chatBody.scrollTop = chatBody.scrollHeight;
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-    const inputElement = document.getElementById('chat-input');
-    if (inputElement) {
-        inputElement.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendChatMessage();
-            }
-        });
+    function toggleLang() { currentLang = currentLang === "ar" ? "en" : "ar"; localStorage.setItem("lang", currentLang); showLoader(600, () => { applyLanguage(currentLang); }); }
+
+    let text = "Torrema", i = 0, titleElement = document.getElementById("title"); titleElement.innerHTML = "";
+    function typing(){
+        if(i < text.length){ titleElement.innerHTML = text.substring(0, i + 1) + '<span style="color:#ff00cc; animation: blink 0.7s infinite;">|</span>'; i++; setTimeout(typing, 200); }
+        else { titleElement.innerHTML = text; }
     }
-});
+    const style = document.createElement('style'); style.innerHTML = '@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }'; document.head.appendChild(style);
+
+    window.onload = function() { applyLanguage(currentLang); typing(); };
+
+    document.getElementById('directMailForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('senderName').value, email = document.getElementById('senderEmail').value, message = document.getElementById('senderMessage').value, myEmail = "abdulreadhido@gmail.com";
+        const subject = encodeURIComponent("طلب برمجيات من Torrema: " + name), bodyText = encodeURIComponent("الاسم: " + name + "\nالإيميل: " + email + "\nالرسالة:\n" + message);
+        window.location.href = `mailto:${myEmail}?subject=${subject}&body=${bodyText}`;
+    });
 </script>
+
+<!-- Tawk.to script script embedded here if needed -->
 </body>
 </html>
